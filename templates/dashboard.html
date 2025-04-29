@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Embedded Dashboard</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+</head>
+<body>
+    <h1>Dashboard Plataforma Nilo Peçanha</h1>
+    <button id="back-to-landing" style="font-size:2em;">Voltar para Página Inicial</button>
+    <br><br>
+
+    <!-- Embedded PowerBI dashboard -->
+    <iframe id="dashboard-iframe"
+            src="{{ dashboard_url }}"
+            width="960" height="540" frameborder="0" allowfullscreen>
+    </iframe>
+
+    <script>
+        var inactivityDelay = 1 * 60 * 1000; // 2 minutes
+        var inactivityTimer;
+
+        function resetInactivity() {
+            clearTimeout(inactivityTimer);
+            inactivityTimer = setTimeout(function(){
+                // Log inactivity timeout
+                $.post('/api/log-interaction', JSON.stringify({
+                    action: 'auto_return_home',
+                    ts: new Date().toISOString()
+                }), null, 'json');
+                window.location.href = '/';
+            }, inactivityDelay);
+
+            // Log interaction
+            $.post('/api/log-interaction', JSON.stringify({
+                action: 'dashboard_interaction',
+                ts: new Date().toISOString()
+            }), null, 'json');
+        }
+
+        // Listen to user interactions
+        $(document).on('click touchstart mousemove keydown', resetInactivity);
+
+        // Manual navigation
+        $('#back-to-landing').on('click touchstart', function(){
+            $.post('/api/log-interaction', JSON.stringify({
+                action: 'manual_return_home',
+                ts: new Date().toISOString()
+            }), null, 'json');
+            window.location.href = '/';
+        });
+
+        // Log dashboard visit and start inactivity timer
+        $(function(){
+            $.post('/api/log-interaction', JSON.stringify({
+                action: 'visit_dashboard',
+                ts: new Date().toISOString()
+            }), null, 'json');
+            resetInactivity();
+        });
+    </script>
+</body>
+</html>
