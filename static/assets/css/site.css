@@ -1,0 +1,56 @@
+.site-menu {
+    position: sticky;
+    top: 88px;
+    overflow-y: scroll;
+    height: 84vh;
+}
+
+/* Footer Styling */
+.br-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px; /* Adjust height as needed */
+  background-color: var(--background-light, #f8f8f8); /* Use theme variable or fallback */
+  border-top: 1px solid var(--border-color, #ddd);
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Ensure footer is on top */
+}
+
+/* Adjust main content padding to avoid overlap with fixed footer */
+body .template-base main {
+  padding-bottom: 60px; /* Footer height + extra space */
+}
+
+/* Simplify footer content display within the bar */
+.br-footer .container-lg {
+  padding: 0;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.br-footer .info {
+  text-align: center;
+  width: 100%;
+  padding-bottom: 0 !important; /* Override default padding */
+}
+
+.br-footer .info .text-down-01 {
+    line-height: 40px; /* Vertically center text in the bar */
+    margin: 0;
+}
+
+/* Hide elements not needed in the small fixed bar */
+.br-footer .logo,
+.br-footer .br-list,
+.br-footer .d-none.d-sm-block, /* Hides social networks and assigns */
+.br-footer .br-divider {
+  display: none;
+}
