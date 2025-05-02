@@ -38,61 +38,40 @@
           <div class="header-top">
             <div class="header-logo"><img src="static/assets/img/pnp_horizontal.png" alt="logo PNP" />
             </div>
-             <div class="header-actions">
-                 <div class="header-links dropdown">
-                    <button class="br-button primary" type="button" id="back-to-landing">
+             <!-- Modified header actions -->
+             <div class="header-actions d-flex flex-grow-1 justify-content-end">
+                 <!-- Allow header-links to grow -->
+                 <div class="header-links flex-grow-1 mx-3">
+                    <!-- Add w-100 class for full width -->
+                    <button class="br-button primary w-100" type="button" id="back-to-landing">
                         <i class="fas fa-home mr-2" aria-hidden="true"></i>Voltar para Página Inicial
+                    </button>
+                 </div>
+                 <!-- Add placeholder for functions if needed by script -->
+                 <div class="header-functions">
+                    <button class="br-button circle" type="button" aria-label="Abrir Acesso Rápido">
+                        <i class="fas fa-th" aria-hidden="true"></i>
                     </button>
                  </div>
              </div>
           </div>
-          <div class="header-bottom">
-            <div class="header-menu">
-              <div class="header-info">
-                <div class="header-title">Dashboard Plataforma Nilo Peçanha</div>
-              </div>
-            </div>
-          </div>
         </div>
       </header>
-      <main class="d-flex flex-fill mb-5" id="main-content">
-        <div class="container-lg d-flex">
-            <div class="row flex-grow-1">
-                <div class="col">
-                    <div class="text-center">
-                        <iframe id="dashboard-iframe"
-                                src="https://app.powerbi.com/view?r=eyJrIjoiZDhkNGNiYzgtMjQ0My00OGVlLWJjNzYtZWQwYjI2OThhYWM1IiwidCI6IjllNjgyMzU5LWQxMjgtNGVkYi1iYjU4LTgyYjJhMTUzNDBmZiJ9"
-                                width="100%" height="600" frameborder="0" allowfullscreen class="mb-3">
-                        </iframe>
-                    </div>
-                </div>
-            </div>
+      <main>
+        <div class="container">
+          <iframe id="dashboard-iframe"
+            src="https://app.powerbi.com/view?r=eyJrIjoiZDhkNGNiYzgtMjQ0My00OGVlLWJjNzYtZWQwYjI2OThhYWM1IiwidCI6IjllNjgyMzU5LWQxMjgtNGVkYi1iYjU4LTgyYjJhMTUzNDBmZiJ9"
+            width="100%" height="800" frameborder="0" allowfullscreen class="mb-3">
+          </iframe>
         </div>
       </main>
+    </div>
        <footer class="br-footer pt-3" id="footer">
-        <div class="container-lg">
-          <div class="logo"><img src="static/assets/img/govbr.svg" alt="Imagem"/></div>
-          <div class="br-list horizontal" data-toggle="data-toggle" data-unique="data-unique">
-            <div class="col-auto"><a class="br-item" href="https://www.gov.br/governodigital/pt-br"><span class="content text-secondary-01 text-bold">Rede Federal</span></a></div>
-            <div class="col-auto"><a class="br-item" href="https://www.gov.br/governodigital/pt-br/acesso-a-informacao"><span class="content text-secondary-01 text-bold">Plataforma Nilo Peçanha</span></a></div>
-          </div>
-          <div class="d-none d-sm-block">
-            <div class="row align-items-end justify-content-between py-5">
-              <div class="col social-network">
-                <p class="text-up-01 text-extra-bold text-uppercase">Redes Sociais</p>
-                <a href="#"><i class="fab fa-facebook-square" aria-hidden="true"></i></a>
-                <a href="#"><i class="fab fa-youtube-square" aria-hidden="true"></i></a>
-              </div>
-              <div class="col assigns text-right"><img class="ml-4" src="static/assets/img/brasil-logo.png" alt="Imagem"/><a href="#"><i class="fas fa-info-circle" aria-hidden="true"></i><span class="ml-1">Acesso à informação</span></a></div>
-            </div>
-          </div>
-        </div>
-        <span class="br-divider my-3"></span>
         <div class="container-lg">
           <div class="info">
             <div class="text-down-01 text-medium pb-3 text-center">Todo o conteúdo deste site está publicado sob a licença MIT</div>
           </div>
-        </div>
+        </div> 
       </footer>
     </div>
     <script src="static/assets/js/core-init.min.js"></script>

@@ -7,6 +7,7 @@
 
 /* Footer Styling */
 .br-footer {
+  /* Revert position back to fixed */
   position: fixed;
   bottom: 0;
   left: 0;
@@ -23,7 +24,12 @@
 
 /* Adjust main content padding to avoid overlap with fixed footer */
 body .template-base main {
+  /* Re-add padding-bottom needed for fixed footer */
   padding-bottom: 60px; /* Footer height + extra space */
+  flex-grow: 1; /* Allow main content to fill available space */
+  display: flex; /* Use flex for children */
+  flex-direction: column; /* Stack children vertically */
+  margin-bottom: 0; /* Remove default margin that might interfere */
 }
 
 /* Simplify footer content display within the bar */
@@ -53,4 +59,49 @@ body .template-base main {
 .br-footer .d-none.d-sm-block, /* Hides social networks and assigns */
 .br-footer .br-divider {
   display: none;
+}
+
+/* Full height layout adjustments */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body .template-base {
+  min-height: 100vh; /* Ensure base template takes full viewport height */
+  display: flex;
+  flex-direction: column;
+}
+
+body .template-base main {
+  flex-grow: 1; /* Allow main content to fill available space */
+  display: flex; /* Use flex for children */
+  flex-direction: column; /* Stack children vertically */
+  margin-bottom: 0; /* Remove default margin that might interfere */
+}
+
+/* Ensure main content's children also fill height */
+main#main-content > .container-lg,
+main#main-content > .container-lg > .row,
+main#main-content > .container-lg > .row > .col {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Style the iframe container */
+.iframe-container {
+  flex-grow: 1; /* Allow container to fill the column */
+  height: 100%; /* Take full height of the column */
+  width: 100%;
+  display: flex;
+}
+
+/* Style the iframe itself */
+#dashboard-iframe {
+  flex-grow: 1; /* Allow iframe to fill its container */
+  border: none; /* Remove default border */
+  width: 100%;
+  height: 100%;
 }
