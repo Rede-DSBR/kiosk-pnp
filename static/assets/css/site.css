@@ -64,12 +64,15 @@ body .template-base main {
 /* Full height layout adjustments */
 html, body {
   height: 100%;
+  min-height: 100vh; /* Explicitly set min-height based on viewport */
   margin: 0;
   padding: 0;
+  display: flex; /* Use flex on body */
+  flex-direction: column; /* Stack children vertically */
 }
 
 body .template-base {
-  min-height: 100vh; /* Ensure base template takes full viewport height */
+  flex-grow: 1; /* Allow template base to fill body */
   display: flex;
   flex-direction: column;
 }
@@ -78,7 +81,9 @@ body .template-base main {
   flex-grow: 1; /* Allow main content to fill available space */
   display: flex; /* Use flex for children */
   flex-direction: column; /* Stack children vertically */
+  padding-bottom: 60px; /* Keep padding for fixed footer */
   margin-bottom: 0; /* Remove default margin that might interfere */
+  overflow: hidden; /* Prevent potential main overflow issues */
 }
 
 /* Ensure main content's children also fill height */
@@ -88,6 +93,7 @@ main#main-content > .container-lg > .row > .col {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  overflow: hidden; /* Prevent potential overflow issues in grid */
 }
 
 /* Style the iframe container */
@@ -96,6 +102,7 @@ main#main-content > .container-lg > .row > .col {
   height: 100%; /* Take full height of the column */
   width: 100%;
   display: flex;
+  overflow: hidden; /* Ensure container doesn't overflow */
 }
 
 /* Style the iframe itself */
