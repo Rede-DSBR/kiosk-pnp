@@ -1,114 +1,123 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Kiosk PNP - Bem Vindo</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="static/assets/img/favicon.ico"/>
-    <link rel="stylesheet" href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800,900&amp;display=swap"/>
-    <link rel="stylesheet" href="static/assets/css/core.min.css">
-    <link rel="stylesheet" href="static/assets/css/site.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"/>
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-</head>
-<body>
-    <div class="template-base">
-      <nav class="br-skiplink" role="menubar">
-        <a class="br-item" href="#main-content" role="menuitem" accesskey="1">
-          Ir para o conteúdo <span aria-hidden="true">(1/4)</span>
-          <span aria-hidden="true" class="br-tag text ml-1">1</span>
-        </a>
-        <a class="br-item" href="#header-navigation" role="menuitem" accesskey="2">
-          Ir para o menu <span aria-hidden="true">(2/4)</span>
-          <span aria-hidden="true" class="br-tag text ml-1">2</span>
-        </a>
-        <a class="br-item" href="#main-searchbox" role="menuitem" accesskey="3">
-          Ir para a busca <span aria-hidden="true">(3/4)</span>
-          <span aria-hidden="true" class="br-tag text ml-1">3</span>
-        </a>
-        <a class="br-item" href="#footer" role="menuitem" accesskey="4">
-          Ir para o rodapé <span aria-hidden="true">(4/4)</span>
-          <span aria-hidden="true" class="br-tag text ml-1">4</span>
-        </a>
-      </nav>
-      <header class="br-header mb-4" id="header" data-sticky="data-sticky">
-        <div class="container-lg">
-          <div class="header-top">
-            <div class="header-logo"><img src="static/assets/img/pnp_horizontal.png" alt="logo PNP" />
-            </div>
-            <div class="header-actions d-flex flex-grow-1 justify-content-end">
-                <div class="header-links flex-grow-1 mx-3">
-                    <button class="br-button primary w-100" type="button" id="goto-dashboard">
-                        <i class="fas fa-tachometer-alt mr-2" aria-hidden="true"></i>Ir para o Painel
-                    </button>
-                </div>
-                <div class="header-functions">
-                    <button class="br-button circle" type="button" aria-label="Abrir Acesso Rápido">
-                        <i class="fas fa-th" aria-hidden="true"></i>
-                    </button>
-                </div>
-            </div>
-          </div>
-        </div>
-      </header>
-      <main class="d-flex flex-fill mb-5" id="main-content">
-        <div class="container-lg d-flex">
-            <div class="row flex-grow-1">
-                <div class="col">
-                    <div class="text-center">
-                        <h1>Bem vindos !!!</h1>
-                        <video id="landing-video" width="80%" height="auto" controls autoplay muted class="mb-3">
-                            <source id="video-source" src="static/videos/video1.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                        <br>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </main>
-      <footer class="br-footer pt-3" id="footer">
-        <div class="container-lg">
-          <div class="info">
-            <div class="text-down-01 text-medium pb-3 text-center">Todo o conteúdo deste site está publicado sob a licença MIT</div>
-          </div>
-        </div> 
-      </footer>
-    </div>
-    <script src="static/assets/js/core-init.min.js"></script>
-    <script src="static/assets/js/site.js"></script>
-    <script>
-        var videos = ['video1.mp4', 'video2.mp4', 'video3.mp4'];
-        var currentVideoIdx = 0;
-        var $video = $('#landing-video');
-        var $videoSource = $('#video-source');
+<!doctype html>
+<html lang="pt-br">
 
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="icon" type="image/png" sizes="32x32" href="static/assets/img/favicon.ico" />
+  <!-- Font Rawline-->
+  <link rel="stylesheet"
+    href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css" />
+  <!-- Font Raleway-->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800,900&amp;display=swap" />
+  <!-- Design System GOV.BR CSS-->
+  <link rel="stylesheet" href="static/assets/css/core.min.css">
+  <link rel="stylesheet" href="static/assets/css/site.css">
+  <!-- Fontawesome-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <title>Kiosk da Plataforma Nilo Peçanha</title>
+</head>
+
+<body>
+  <!-- Conteúdo-->
+  <div class="template-base">
+    <nav class="br-skiplink" role="menubar"><a class="br-item" href="#main-content" role="menuitem" accesskey="1">Ir
+        para o conteúdo <span aria-hidden="true">(1/4)</span> <span aria-hidden="true"
+          class="br-tag text ml-1">1</span></a><a class="br-item" href="#header-navigation" role="menuitem"
+        accesskey="2">Ir para o menu <span aria-hidden="true">(2/4)</span> <span aria-hidden="true"
+          class="br-tag text ml-1">2</span></a><a class="br-item" href="#main-searchbox" role="menuitem"
+        accesskey="3">Ir para a busca <span aria-hidden="true">(3/4)</span> <span aria-hidden="true"
+          class="br-tag text ml-1">3</span></a><a class="br-item" href="#footer" role="menuitem" accesskey="4">Ir para o
+        rodapé <span aria-hidden="true">(4/4)</span> <span aria-hidden="true" class="br-tag text ml-1">4</span></a>
+    </nav>
+    <header class="br-header" id="header" data-sticky="data-sticky">
+      <div class="container-lg">
+        <div class="header-top">
+          <div class="header-logo"><img src="static/assets/img/pnp_horizontal.png" alt="logo PNP" />
+          </div>
+          <!-- Modified header actions -->
+          <div class="header-actions d-flex flex-grow-1 justify-content-end">
+            <!-- Allow header-links to grow -->
+            <div class="header-links flex-grow-1 mx-3">
+              <!-- Add w-100 class for full width -->
+              <button class="br-button primary w-100" type="button" id="goto-dashboard">
+                <i class="fas fa-tachometer-alt mr-2" aria-hidden="true"></i>Ir para o Painel
+              </button>
+            </div>
+            <!-- Add placeholder for functions if needed by script -->
+            <div class="header-functions">
+              <button class="br-button circle" type="button" aria-label="Abrir Acesso Rápido">
+                <i class="fas fa-th" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="d-flex flex-fill mb-5" id="main-content">
+      <div class="container-lg d-flex">
+        <div class="row flex-grow-1">
+          <div class="col">
+            <div class="text-center">
+              <h1>Bem vindos !!!</h1>
+              <video id="landing-video" width="80%" height="auto" controls autoplay muted class="mb-3">
+                <source id="video-source" src="static/videos/video1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="br-footer pt-3" id="footer">
+      <div class="container-fluid">
+        <div class="info">
+          <div class="text-down-01 text-medium pb-3">Todo o conteúdo deste site está publicado sob a licença MIT</div>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <!-- Scripts de componentes -->
+  <script tag="module" src="static/assets/js/core-init.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      var videos = ['video1.mp4', 'video2.mp4', 'video3.mp4'];
+      var currentVideoIdx = 0;
+      var $video = $('#landing-video');
+      var $videoSource = $('#video-source');
+
+      if ($video.length > 0 && $videoSource.length > 0) {
         $videoSource.attr('src', 'static/videos/' + videos[currentVideoIdx]);
         $video[0].load();
 
-        $video.on('ended', function() {
-            currentVideoIdx = (currentVideoIdx + 1) % videos.length;
-            $videoSource.attr('src', 'static/videos/' + videos[currentVideoIdx]);
-            $video[0].load();
-            $video[0].play();
+        $video.on('ended', function () {
+          currentVideoIdx = (currentVideoIdx + 1) % videos.length;
+          $videoSource.attr('src', 'static/videos/' + videos[currentVideoIdx]);
+          $video[0].load();
+          $video[0].play();
         });
+      }
 
-        // ==== Navigation ====
-        $('#goto-dashboard').on('click touchstart', function() {
-            window.location.href = 'dashboard.html';
-        });
-    </script>
-    <div vw class="enabled">
-      <div vw-access-button class="active"></div>
-      <div vw-plugin-wrapper>
-        <div class="vw-plugin-top-wrapper"></div>
-      </div>
-    </div>
-    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-    <script>
-      new window.VLibras.Widget('https://vlibras.gov.br/app');
-    </script>
+      $('#goto-dashboard').on('click touchstart', function () {
+        window.location.href = 'dashboard.html';
+      });
+    });
+  </script>
+
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
 </body>
+
 </html>
