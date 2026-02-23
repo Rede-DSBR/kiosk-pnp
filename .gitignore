@@ -172,3 +172,9 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Local video files (large files)
+static/videos/*.mp4
+static/videos/*.webm
+static/videos/*.mov
+static/videos/*.avi
