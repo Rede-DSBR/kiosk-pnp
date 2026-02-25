@@ -9,6 +9,7 @@
     <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#173bff">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     
@@ -110,37 +111,24 @@
                 .catch(error => console.log('SW registration failed'));
         }
 
-        // Load video as Blob URL to prevent re-fetching on every loop
+        // Play video with sound (browser caches automatically)
         document.addEventListener('DOMContentLoaded', function() {
             const video = document.getElementById('main-video');
-            const videoSrc = video.getAttribute('src');
-
-            // Download the video once and convert to blob URL
-            fetch(videoSrc)
-                .then(response => response.blob())
-                .then(blob => {
-                    const blobUrl = URL.createObjectURL(blob);
-                    video.src = blobUrl;
-                    video.load();
-                    tryPlayWithSound(video);
-                })
-                .catch(error => {
-                    // Fallback: play directly from URL if blob fails
-                    console.log('Blob download failed, using direct URL:', error);
-                    tryPlayWithSound(video);
+            
+            // Try to play with sound first
+            const playPromise = video.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    // Video started playing with sound
+                    video.muted = false;
+                }).catch(error => {
+                    // Autoplay failed, likely need user interaction
+                    console.log('Autoplay with sound failed:', error);
+                    // Keep video muted for autoplay to work
+                    video.muted = true;
+                    video.play();
                 });
-
-            function tryPlayWithSound(vid) {
-                const playPromise = vid.play();
-                if (playPromise !== undefined) {
-                    playPromise.then(() => {
-                        vid.muted = false;
-                    }).catch(error => {
-                        console.log('Autoplay with sound failed:', error);
-                        vid.muted = true;
-                        vid.play();
-                    });
-                }
             }
             
             // Unmute on first user interaction

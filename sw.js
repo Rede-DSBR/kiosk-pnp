@@ -28,31 +28,9 @@ self.addEventListener('install', event => {
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
 
-  // Runtime cache for video files from known hosts
+  // Don't intercept video requests - let browser handle natively (avoids CORS)
   if (VIDEO_HOSTS.some(host => url.hostname.includes(host))) {
-    event.respondWith(
-      caches.open(VIDEO_CACHE_NAME).then(cache => {
-        return cache.match(event.request).then(cachedResponse => {
-          if (cachedResponse) {
-            return cachedResponse;
-          }
-          // Fetch without range headers to get the full file for caching
-          const fetchRequest = new Request(event.request.url, {
-            method: 'GET',
-            headers: {},
-            mode: 'cors',
-            credentials: 'omit'
-          });
-          return fetch(fetchRequest).then(networkResponse => {
-            if (networkResponse && networkResponse.ok) {
-              cache.put(event.request, networkResponse.clone());
-            }
-            return networkResponse;
-          });
-        });
-      })
-    );
-    return;
+    return; // Browser handles video caching
   }
 
   // Cache-first for all other requests
