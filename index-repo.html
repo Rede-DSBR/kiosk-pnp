@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiosk da Plataforma Nilo Peçanha</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="static/assets/img/favicon.ico" />
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#173bff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .main-container {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            background-image: url('static/assets/img/Layout da TV.svg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .video-container {
+            position: absolute;
+            width: 60%;
+            max-width: 60%;
+            top: 35%;
+            left: 41%; /* Positioned at 35% from left (10% padding + 60% video width/2) */
+            transform: translate(-50%, -50%);
+            margin-top: 5vh; /* Adjust vertical positioning to account for top padding */
+        }
+        
+        .main-video {
+            width: 100%;
+            height: auto;
+            max-height: 70vh;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        
+        .interactive-area {
+            position: absolute;
+            width: 30%;
+            height: 60vh;
+            top: 35%;
+            right: 5%;
+            transform: translateY(-50%);
+            margin-top: 5vh; /* Match the video's vertical adjustment */
+            cursor: pointer;
+            /* For debugging - remove this border in production */
+            /* border: 2px dashed rgba(255, 0, 0, 0.3); */
+        }
+        
+        /* Optimizations for 4K display */
+        @media (min-width: 3840px) {
+            .main-video {
+                max-height: 75vh;
+            }
+            
+            body {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Video container (60% width) -->
+        <!-- Coloque o arquivo de vídeo em: static/videos/Video_Horizontal_2juntos.mp4 -->
+        <div class="video-container">
+            <video
+                class="main-video"
+                id="main-video"
+                src="static/videos/Video_Horizontal_2juntos.mp4"
+                autoplay
+                loop
+                playsinline
+                controls
+                preload="auto">
+                Seu navegador não suporta o elemento de vídeo.
+            </video>
+        </div>
+        
+        <!-- Invisible clickable area over the right side image -->
+        <a href="javascript:void(0)" class="interactive-area" id="right-image-link"></a>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        /*
+         * NOTA SOBRE ABERTURA DIRETA (file://)
+         * Ao abrir este arquivo diretamente pelo navegador (protocolo file://):
+         *
+         * 1. AUTOPLAY COM SOM: Navegadores modernos bloqueiam autoplay com áudio.
+         *    O código abaixo já trata isso: inicia mudo e ativa o som após o
+         *    primeiro clique do usuário.
+         *
+         * 2. SERVICE WORKER: Não funciona com file://. Este arquivo não registra
+         *    Service Worker, portanto não há bloqueio por esse motivo.
+         *
+         * 3. MANIFEST PWA: O link rel="manifest" é ignorado em file://, sem bloqueio.
+         *
+         * 4. BOOTSTRAP (CDN): Requer conexão com a internet. Sem conexão, os estilos
+         *    e scripts do Bootstrap não carregarão.
+         *
+         * Para uso totalmente offline, sirva os arquivos via servidor HTTP local
+         * (ex: "npx serve ." ou extensão Live Server do VS Code).
+         */
+
+        // Force video to play with sound
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.getElementById('main-video');
+            
+            // Try to play with sound first
+            const playPromise = video.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    // Video started playing with sound
+                    video.muted = false;
+                }).catch(error => {
+                    // Autoplay failed, likely need user interaction
+                    console.log('Autoplay with sound failed:', error);
+                    // Keep video muted for autoplay to work
+                    video.muted = true;
+                    video.play();
+                });
+            }
+            
+            // Add click handler to unmute on first user interaction
+            document.addEventListener('click', function enableSound() {
+                video.muted = false;
+                video.play();
+                document.removeEventListener('click', enableSound);
+            }, { once: true });
+        });
+
+        // Add event listener for the clickable area
+        document.getElementById('right-image-link').addEventListener('click', function() {
+            // Replace with your desired action when the image area is clicked
+            console.log('Right image area clicked');
+            // Example: redirect to another page
+            window.location.href = 'dashboard.html';
+            
+            // Example: show a modal
+            // var myModal = new bootstrap.Modal(document.getElementById('infoModal'));
+            // myModal.show();
+        });
+    </script>
+</body>
+</html>
